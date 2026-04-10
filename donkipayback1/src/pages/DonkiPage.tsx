@@ -14,7 +14,7 @@ export default function DonkiPage() {
       <CouponTopNav />
       <main className="max-w-2xl mx-auto px-5 py-16 text-center">
         <p className="text-lg sm:text-xl text-gray-800 leading-relaxed break-keep mb-10">
-          죄송합니다 현재 계약문제로 아직 안됐습니다. 최대한 빨리 정상 서비스 되도록 노력하겠습니다.
+          죄송합니다. 현재 계약 관련 문제로 서비스가 지연되고 있습니다. 불편을 드린 점 양해 부탁드리며, 최대한 빠르게 정상화될 수 있도록 최선을 다하겠습니다.
         </p>
         <button
           onClick={() => navigate('/drugstore')}
