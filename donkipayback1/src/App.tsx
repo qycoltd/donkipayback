@@ -275,7 +275,7 @@ export default function App() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">영수증만 찍으면 현금으로</span>
               </h1>
               <p className="text-base sm:text-xl text-gray-500 mb-10 sm:mb-12 leading-relaxed break-keep max-w-xl mx-auto font-medium">
-                제휴 매장에서 할인 받고, 종이 영수증은 카카오톡으로 보내세요. 영업일 기준 5일 내 한국 계좌로 입금해 드립니다.
+                제휴 매장에서 할인 받고, 종이 영수증은 카카오톡으로 보내세요. 영업일 기준 5일 내 카카오페이로 입금해 드립니다.
               </p>
               
               <div className="flex flex-col items-center gap-6 sm:gap-8">
@@ -486,7 +486,7 @@ export default function App() {
                   <span className="text-blue-600 font-extrabold">Q.</span> 캐시백 지급을 위해 어떤 정보가 필요한가요?
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep pl-7">
-                  본인 확인을 위한 <strong className="text-gray-900">연락처</strong>와 캐시백을 입금받으실 <strong className="text-gray-900">한국 은행 계좌번호</strong>만 필요합니다. 불필요한 민감 개인정보는 절대 요구하지 않습니다.
+                  별도의 연락처나 계좌번호, 본인인증도 필요 없습니다. <strong className="text-gray-900">카카오톡으로 영수증 인증</strong>만 완료해주시면, 해당 계정의 <strong className="text-gray-900">카카오페이</strong>로 즉시 입금해 드립니다.
                 </p>
               </div>
             </FadeIn>
@@ -519,7 +519,7 @@ export default function App() {
                   <span className="text-blue-600 font-extrabold">Q.</span> 캐시백은 언제 입금되나요?
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep pl-7">
-                  보내주신 영수증의 검수가 완료된 후, <strong className="text-gray-900">영업일 기준 5일 이내</strong>에 고객님이 요청하신 한국 계좌로 안전하게 원화 입금 처리됩니다.
+                  보내주신 영수증의 검수가 완료된 후, <strong className="text-gray-900">영업일 기준 5일 이내</strong>에 고객님의 카카오페이로 안전하게 원화 입금 처리됩니다.
                 </p>
               </div>
             </FadeIn>
@@ -569,7 +569,7 @@ export default function App() {
                 <strong className="text-gray-500">캐시백 정책:</strong> 캐시백 적립률 및 지급 일정은 제휴 매장의 조건 및 당사 내부 정책에 따라 변동될 수 있습니다. 최신 캐시백 조건 및 지급 일정은 카카오톡 채널을 통해 확인하실 수 있으며, 캐시백은 영수증 검증 완료 후 지급됩니다.
               </p>
               <p>
-                <strong className="text-gray-500">개인정보 처리:</strong> 서비스 이용 시 캐시백 지급 목적으로만 연락처 및 은행 계좌 정보를 수집하며, 모든 개인정보는 관련 법령에 따라 안전하게 처리됩니다.
+                <strong className="text-gray-500">개인정보 처리:</strong> 서비스 이용 시 별도의 연락처, 계좌 정보, 본인인증을 요구하지 않으며, 카카오톡을 통한 영수증 확인 및 카카오페이 지급 목적으로만 최소한의 정보를 활용합니다.
               </p>
               <p>
                 <strong className="text-gray-500">유의사항:</strong> 유효하지 않거나 조작된 영수증, 또는 부정 이용이 의심되는 경우 캐시백 지급이 제한될 수 있습니다.
