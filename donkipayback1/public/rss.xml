@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>일본 쇼핑 페이백 &amp; 쿠폰</title>
+    <link>https://donkipayback.com</link>
+    <description>일본 쇼핑 시 할인 쿠폰 적용하고 추가 페이백까지 받는 방법! 일본 여행 필수 쇼핑 혜택</description>
+    <language>ko-kr</language>
+    <item>
+      <title>일본 드럭스토어 할인 쿠폰 및 페이백</title>
+      <link>https://donkipayback.com/drugstore</link>
+      <description>고쿠민, 선드럭, 코스모스, 스기 등 일본 드럭스토어 할인 쿠폰 모음</description>
+    </item>
+    <item>
+      <title>일본 백화점 할인 쿠폰 및 페이백</title>
+      <link>https://donkipayback.com/department</link>
+      <description>다이마루 백화점, 킨테츠 백화점 등 일본 백화점 할인 쿠폰 모음</description>
+    </item>
+    <item>
+      <title>일본 전자기기 할인 쿠폰 및 페이백</title>
+      <link>https://donkipayback.com/electronics</link>
+      <description>에디온 전자상가, 빅카메라 등 일본 전자기기 할인 쿠폰 모음</description>
+    </item>
+  </channel>
+</rss>
