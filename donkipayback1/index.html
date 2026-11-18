@@ -6,6 +6,24 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>돈키호테 페이백 앤 쿠폰</title>
     <meta name="description" content="일본 쇼핑 시 할인 쿠폰 적용하고 추가 페이백까지 받는 방법! 일본 여행 필수 쇼핑 혜택">
+    <script>
+      (function () {
+        var path = location.pathname.replace(/\/+$/, "") || "/";
+        if (path !== "/kakao") return;
+        var meta = document.querySelector('meta[name="description"]');
+        document.documentElement.dataset.defaultTitle = document.title;
+        if (meta) {
+          document.documentElement.dataset.defaultDescription = meta.getAttribute("content") || "";
+        }
+        document.title = "일본 쇼핑, 쿠폰 받고 페이백까지 | 돈키페이백";
+        if (meta) {
+          meta.setAttribute(
+            "content",
+            "드럭스토어 5% · 다이마루·킨테츠 2% 현금 페이백. 카카오 채널을 추가하고 쿠폰을 받은 뒤, 영수증을 보내 페이백을 신청하세요."
+          );
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

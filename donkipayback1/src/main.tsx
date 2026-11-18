@@ -5,6 +5,7 @@ import App from './App.tsx';
 import DrugstorePage from './pages/DrugstorePage.tsx';
 import DepartmentPage from './pages/DepartmentPage.tsx';
 import ElectronicsPage from './pages/ElectronicsPage.tsx';
+import KakaoLandingPage from './pages/KakaoLandingPage.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/drugstore" element={<DrugstorePage />} />
         <Route path="/department" element={<DepartmentPage />} />
         <Route path="/electronics" element={<ElectronicsPage />} />
+        <Route path="/kakao" element={<KakaoLandingPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
