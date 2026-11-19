@@ -49,6 +49,23 @@ function KakaoMark() {
   );
 }
 
+function PayoutExample() {
+  return (
+    <aside
+      className="mb-3 rounded-xl border border-[#dbeafe] bg-[#eff6ff] px-3 py-2.5 shadow-[inset_3px_0_0_#1d4ed8]"
+      data-testid="payout-example"
+    >
+      <p className="text-[11px] font-extrabold tracking-[-0.02em] text-[#1d4ed8]">실제 지급 사례</p>
+      <p className="mt-1 text-[13px] font-bold leading-[1.45] tracking-[-0.03em] break-keep">
+        오사카 선드럭 영수증 ¥15,177 → 페이백 5,840원 지급
+      </p>
+      <p className="mt-1 text-[11px] leading-[1.5] text-[#4b5563] break-keep">
+        소비세를 뺀 금액의 5% · 영수증 사진만 보내면 확인 후 지급
+      </p>
+    </aside>
+  );
+}
+
 function ChannelAddButton() {
   return (
     <a
@@ -140,6 +157,7 @@ export default function KakaoLandingPage() {
         </div>
 
         <div className="px-5 pb-2 pt-5">
+          <PayoutExample />
           <ChannelAddButton />
           <p className="mt-2 text-center text-xs leading-relaxed text-[#6b7280] break-keep">
             카카오톡이 열리고, 채널을 추가하면 쿠폰을 받을 수 있어요
