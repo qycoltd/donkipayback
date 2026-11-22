@@ -22,7 +22,7 @@ import {
   UserX
 } from 'lucide-react';
 
-const KAKAO_CHANNEL_URL = "http://pf.kakao.com/_VITdX/chat";
+const KAKAO_CHANNEL_URL = "https://pf.kakao.com/_VITdX/chat";
 
 function KakaoCTA({ className = "", size = "default", dominant = false }: { className?: string, size?: "default" | "large", dominant?: boolean }) {
   const baseStyle = "inline-flex items-center justify-center gap-2 bg-[#FEE500] text-[#191919] font-bold transition-all active:scale-[0.98]";
