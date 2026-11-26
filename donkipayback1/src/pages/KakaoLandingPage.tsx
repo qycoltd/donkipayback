@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { loadNaverWcs, trackKakaoChannelAddConversion } from "../lib/naverWcs.ts";
+import { KAKAO_CHANNEL_ADD_URL } from "../config/naverWcs.ts";
 
-const KAKAO_FRIEND_URL = "https://pf.kakao.com/_VITdX/friend";
 const KAKAO_CHAT_URL = "https://pf.kakao.com/_VITdX/chat";
 
 const PAGE_TITLE = "일본 쇼핑, 쿠폰 받고 페이백까지 | 돈키페이백";
@@ -69,10 +68,9 @@ function PayoutExample() {
 function ChannelAddButton() {
   return (
     <a
-      href={KAKAO_FRIEND_URL}
+      href={KAKAO_CHANNEL_ADD_URL}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={trackKakaoChannelAddConversion}
       data-testid="kakao-friend-cta"
       className={CTA_CLASS}
     >
@@ -114,7 +112,6 @@ export default function KakaoLandingPage() {
 
     document.title = PAGE_TITLE;
     meta?.setAttribute("content", PAGE_DESCRIPTION);
-    void loadNaverWcs();
 
     return () => {
       document.title = restoreTitle;
