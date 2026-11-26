@@ -10,8 +10,10 @@
  *    (SPA 경로가 바뀔 때도 페이지뷰를 다시 보냄)
  * 3. 카카오 채널 추가 링크(KAKAO_CHANNEL_ADD_URL) 클릭 시
  *    wcs.trans({ type: "custom001" })
+ * 4. 카카오 채널 이동 버튼(노란 CTA, KAKAO_CHAT_OPEN_URL) 클릭 시
+ *    wcs.trans({ type: "custom002" })
  *
- * 채팅 링크(pf.kakao.com/_VITdX/chat)는 채널 추가가 아니므로 전환으로 세지 않습니다.
+ * 문의·푸터의 글자 링크는 같은 /chat 주소여도 채널 이동 버튼이 아니므로 세지 않습니다.
  * 구 스크립트(wcs.cnv + wcs_do(_nasa))는 같은 클릭에 같이 호출하면 중복 집계되고,
  * trans 전환이 한 번이라도 나가면 같은 유형의 cnv 전환이 영구 필터링되므로 호출하지 않습니다.
  * https://naver.github.io/conversion-tracking/pages/01_script_guide_wcstrans/
@@ -27,8 +29,20 @@ export const NAVER_WCS_INFLOW_DOMAIN = "donkipayback.com";
 /** 채널 추가 버튼. 보고서의 사용자정의 #1 (구 스크립트 cnv type 5). */
 export const NAVER_WCS_CONVERSION_TYPE = "custom001";
 
-/** 이 주소로 가는 클릭만 채널 추가 전환입니다. */
+/** 채널 이동(채팅 열기) 버튼. 보고서의 사용자정의 #2. 채널 추가와 따로 집계합니다. */
+export const NAVER_WCS_CHAT_CONVERSION_TYPE = "custom002";
+
+/** 이 주소로 가는 클릭은 채널 추가 전환입니다. */
 export const KAKAO_CHANNEL_ADD_URL = "https://pf.kakao.com/_VITdX/friend";
+
+/** 채널 채팅. 노란 채널 이동 버튼만 custom002이고, 글자 링크는 제외합니다. */
+export const KAKAO_CHAT_OPEN_URL = "https://pf.kakao.com/_VITdX/chat";
+
+/**
+ * 채널 이동 CTA가 공통으로 쓰는 카카오 노란 배경 클래스.
+ * 히어로, 하단 고정 바, 플로팅 버튼에 있고, 문의·푸터 글자 링크에는 없습니다.
+ */
+export const KAKAO_CHAT_CTA_CLASS = "bg-[#FEE500]";
 
 export function isNaverWcsConfigured(): boolean {
   return NAVER_WCS_WA.trim().length > 0;

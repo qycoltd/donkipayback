@@ -1,6 +1,9 @@
 import {
   isNaverWcsConfigured,
   KAKAO_CHANNEL_ADD_URL,
+  KAKAO_CHAT_CTA_CLASS,
+  KAKAO_CHAT_OPEN_URL,
+  NAVER_WCS_CHAT_CONVERSION_TYPE,
   NAVER_WCS_CONVERSION_TYPE,
   NAVER_WCS_INFLOW_DOMAIN,
   NAVER_WCS_WA,
@@ -20,23 +23,47 @@ declare global {
 }
 
 let loadPromise: Promise<void> | null = null;
-let pendingConversions = 0;
+const pendingConversions: string[] = [];
 
-/**
- * True when the link is the Kakao channel-add URL.
- * Query strings and a trailing slash do not change the match.
- * Chat links (…/_VITdX/chat) are not channel adds.
- */
-export function isKakaoChannelAddHref(href: string): boolean {
+function sameKakaoPath(href: string, expectedHref: string): boolean {
   try {
     const url = new URL(href, "https://donkipayback.com");
-    const expected = new URL(KAKAO_CHANNEL_ADD_URL);
+    const expected = new URL(expectedHref);
     const path = url.pathname.replace(/\/+$/, "") || "/";
     const expectedPath = expected.pathname.replace(/\/+$/, "") || "/";
     return url.hostname === expected.hostname && path === expectedPath;
   } catch {
     return false;
   }
+}
+
+/**
+ * True when the link is the Kakao channel-add URL.
+ * Query strings and a trailing slash do not change the match.
+ */
+export function isKakaoChannelAddHref(href: string): boolean {
+  return sameKakaoPath(href, KAKAO_CHANNEL_ADD_URL);
+}
+
+/** True when the link opens the Kakao channel chat. */
+export function isKakaoChatHref(href: string): boolean {
+  return sameKakaoPath(href, KAKAO_CHAT_OPEN_URL);
+}
+
+/**
+ * Yellow chat-open CTAs only. Inquiry and footer text links use the same
+ * chat URL but are not buttons, so they are not conversions.
+ */
+export function isKakaoChatOpenCta(anchor: HTMLAnchorElement): boolean {
+  if (!isKakaoChatHref(anchor.href)) return false;
+  return anchor.className.split(/\s+/).includes(KAKAO_CHAT_CTA_CLASS);
+}
+
+/** custom001 for channel add, custom002 for a chat-open button, otherwise null. */
+export function conversionTypeForAnchor(anchor: HTMLAnchorElement): string | null {
+  if (isKakaoChannelAddHref(anchor.href)) return NAVER_WCS_CONVERSION_TYPE;
+  if (isKakaoChatOpenCta(anchor)) return NAVER_WCS_CHAT_CONVERSION_TYPE;
+  return null;
 }
 
 function identifySite(): boolean {
@@ -105,41 +132,42 @@ export function sendNaverWcsPageView(): void {
   }
 }
 
-function sendConversionNow(): boolean {
+function sendConversionNow(type: string): boolean {
   if (!identifySite()) return false;
   const wcs = window.wcs;
   if (!wcs || typeof wcs.trans !== "function") return false;
-  wcs.trans({ type: NAVER_WCS_CONVERSION_TYPE });
+  wcs.trans({ type });
   return true;
 }
 
 function flushPendingConversions(): void {
-  while (pendingConversions > 0) {
-    if (!sendConversionNow()) return;
-    pendingConversions -= 1;
+  while (pendingConversions.length > 0) {
+    const type = pendingConversions[0];
+    if (!sendConversionNow(type)) return;
+    pendingConversions.shift();
   }
 }
 
 /**
- * Channel-add click. Sends wcs.trans({ type: "custom001" }) only.
+ * One conversion for one click. Sends wcs.trans({ type }) only.
  * The legacy cnv call is intentionally omitted: Naver counts both,
  * and one trans event permanently filters the matching cnv type.
  * If wcslog.js is still loading, the conversion is sent when it finishes.
  * Never throws and never blocks navigation.
  */
-export function trackKakaoChannelAddConversion(): void {
+export function trackNaverConversion(type: string): void {
   if (!isNaverWcsConfigured()) return;
   try {
-    if (sendConversionNow()) return;
-    pendingConversions += 1;
+    if (sendConversionNow(type)) return;
+    pendingConversions.push(type);
     void loadNaverWcs().then(() => {
       try {
         flushPendingConversions();
       } catch {
-        // Never block the channel-add link.
+        // Never block the Kakao link.
       }
     });
   } catch {
-    // Never block the channel-add link.
+    // Never block the Kakao link.
   }
 }
